@@ -1,4 +1,3 @@
-//your code here
 class OutOfRangeError extends Error {
     constructor(arg) {
         super(`Expression should only consist of integers and +-/* characters and not ${arg}`);
@@ -14,6 +13,8 @@ class InvalidExprError extends Error {
 }
 
 function evalString(expression) {
+    expression = expression.trim();
+
     if (/[\+\-\*\/]{2,}/.test(expression)) {
         throw new InvalidExprError();
     }
@@ -31,11 +32,11 @@ function evalString(expression) {
 }
 
 function evaluateExpression() {
-    const inputField = document.getElementById("expression");
+    const inputField = document.getElementById("input1");
     const resultField = document.getElementById("result");
 
     try {
-        let result = evalString(inputField.value.trim());
+        let result = evalString(inputField.value);
         resultField.textContent = `Result: ${result}`;
         resultField.style.color = "green";
     } catch (error) {
